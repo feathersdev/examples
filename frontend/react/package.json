@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@featherscloud/auth": "^0.6.5",
+    "@feathersdev/auth": "^0.6.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

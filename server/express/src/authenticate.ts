@@ -1,6 +1,6 @@
-import type { CloudAuthUser } from '@featherscloud/auth'
+import type { CloudAuthUser } from '@feathersdev/auth'
 import type { NextFunction, Request, Response } from 'express'
-import { createVerifier } from '@featherscloud/auth'
+import { createVerifier } from '@feathersdev/auth'
 
 const appId = '<your-app-id>'
 const verifier = createVerifier({ appId })

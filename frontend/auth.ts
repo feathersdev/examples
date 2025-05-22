@@ -1,4 +1,4 @@
-import { createClient, LoginRequiredError } from '@featherscloud/auth'
+import { createClient, LoginRequiredError } from '@feathersdev/auth'
 
 /**
  * The public application identifier for your Feathers app.

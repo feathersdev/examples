@@ -1,4 +1,4 @@
-import { createClient, LoginRequiredError } from '@featherscloud/auth'
+import { createClient, LoginRequiredError } from '@feathersdev/auth'
 
 export const appId = '<your-app-id>'
 

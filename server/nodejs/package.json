@@ -12,7 +12,7 @@
     "start": "tsx src/server.ts"
   },
   "dependencies": {
-    "@featherscloud/auth": "^0.6.5"
+    "@feathersdev/auth": "^0.6.5"
   },
   "devDependencies": {
     "tsx": "^4.19.2"
