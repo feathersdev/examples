@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { automerge } from './feathers'
+import { automerge } from './auth'
 
 const handle = await automerge.find<{ counter: number }>()
 const counter = ref<number>(0)
@@ -10,7 +10,7 @@ handle.on('change', ({ doc }) => {
 })
 
 async function incrementCounter() {
-  handle.change(doc => {
+  handle.change((doc) => {
     doc.counter = (doc.counter || 0) + 1
   })
 }
@@ -22,7 +22,9 @@ async function incrementCounter() {
       <h1>feathers.dev Vue demo</h1>
       <p>Our community counter is:</p>
       <h2><strong>{{ counter }}</strong></h2>
-      <button @click="incrementCounter">Increment</button>
+      <button @click="incrementCounter">
+        Increment
+      </button>
     </div>
   </header>
 </template>

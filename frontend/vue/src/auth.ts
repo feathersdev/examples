@@ -1,20 +1,26 @@
 import { createClient } from '@feathersdev/auth'
-import { createAutomerge } from '@feathersdev/automerge'
 
+/**
+ * This is your public application id
+ */
 export const appId = '<your-app-id>'
 
+/**
+ * The Feathers auth client instance. You can use it to get a token,
+ * retrieve the current user and to log in and out.
+ */
 export const auth = createClient({
   appId,
   onLoginRequired: async (error) => {
+    // Redirect to login page whenever a login is required
+    // You can also do other things here like show a modal before redirecting
     window.location.href = await auth.getLoginUrl(error)
   },
 })
 
-export const automerge = createAutomerge(auth)
-
 /**
- * Make an authenticated request using the fetch API or
- * redirect to the login page if the user needs to log in.
+ * Make an authenticated request to a server using the standard fetch API.
+ * Will redirect to the login page instead if the user needs to log in.
  *
  * @param url The URL for the request
  * @param options Additional request options.
