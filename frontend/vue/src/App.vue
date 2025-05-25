@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { automerge } from './auth'
+import { automerge } from './automerge.js'
 
 const handle = await automerge.find<{ counter: number }>()
 const counter = ref<number>(0)
