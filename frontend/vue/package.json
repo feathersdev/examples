@@ -4,15 +4,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --port 3000",
+    "dev": "vite --port 4040",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "@feathersdev/auth": "^0.10.0",
-    "@feathersdev/automerge": "^0.10.0",
+    "@feathersdev/auth": "^0.11.0",
+    "@feathersdev/automerge": "^0.11.0",
     "vue": "^3.5.12"
   },
   "devDependencies": {
