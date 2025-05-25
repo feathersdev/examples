@@ -1,4 +1,4 @@
-import { authenticateRequest } from "./authenticate.ts"
+import { authenticateRequest } from './authenticate.js'
 
 const port = 3030
 
@@ -12,8 +12,8 @@ const headers = {
 
 async function handler(request: Request): Promise<Response> {
   // Get the path from the request object
-  const url = new URL(request.url);
-  const path = url.pathname;
+  const url = new URL(request.url)
+  const path = url.pathname
 
   try {
     // Handle CORS preflight request
@@ -28,12 +28,13 @@ async function handler(request: Request): Promise<Response> {
       const body = {
         message: `Hello ${user.email} from Deno!`,
       }
-  
+
       return Response.json(body, {
         status: 200,
         headers,
       })
-    } else {
+    }
+    else {
       throw new Error(`Not Found ${path}`)
     }
   }

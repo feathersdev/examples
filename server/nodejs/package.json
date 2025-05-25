@@ -1,18 +1,18 @@
 {
   "name": "nodejs-server",
+  "type": "module",
   "version": "1.0.0",
   "description": "A plain Node.js server using Feathers Auth for authentication",
   "author": "",
   "license": "MIT",
   "keywords": [],
   "main": "server.ts",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx src/server.ts"
   },
   "dependencies": {
-    "@featherscloud/auth": "^0.6.5"
+    "@feathersdev/auth": "^0.11.0"
   },
   "devDependencies": {
     "tsx": "^4.19.2"

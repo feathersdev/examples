@@ -1,5 +1,5 @@
 import type { IncomingMessage } from 'node:http'
-import { createVerifier } from '@featherscloud/auth'
+import { createVerifier } from '@feathersdev/auth'
 
 /**
  * The public application identifier for your Feathers app.

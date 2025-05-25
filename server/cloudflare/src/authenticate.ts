@@ -1,4 +1,4 @@
-import { createVerifier } from '@featherscloud/auth'
+import { createVerifier } from '@feathersdev/auth'
 
 const appId = '<your-app-id>'
 const verifier = createVerifier({ appId })

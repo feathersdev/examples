@@ -1,35 +1,32 @@
 import { useEffect, useState } from 'react'
 
 import './App.css'
-import { authFetch } from './auth'
-
-async function loadMessage() {
-  // Get data with authentication from your server
-  const response = await authFetch('http://localhost:3030/message', {
-    method: 'GET'
-  });
-
-  if (response.status >= 400) {
-    throw new Error(`Failed to load message: ${response.statusText}`);
-  }
-
-  return response.json();
-}
+import { auth } from './auth'
+import { loadAppDocument, AppDocumentHandle } from './automerge'
+import { FeathersAuthUser } from '@feathersdev/auth'
+import Counter from './Counter'
 
 function App() {
-  const [message, setMessage] = useState('')
+  const [handle, setHandle] = useState<AppDocumentHandle>()
+  const [user, setUser] = useState<FeathersAuthUser | null>(null)
 
   useEffect(() => {
-    loadMessage().then(({ message }) => setMessage(message))
-  }, [message])
+    // Get the application document
+    loadAppDocument().then(async handle => {
+      setHandle(handle)
+      // Once the app document is available we also know
+      // we are logged in and can set the user
+      setUser(await auth.getUser())
+    })
+  }, [])
 
   return (
     <>
-      <h1>Feathers Auth React Demo</h1>
+      <h1>feathers.dev React Demo</h1>
       <div className="card">
-        <p>The message from the server is:</p>
+        <p>Hello {user?.email}!</p>
+        {handle && <Counter handle={handle} />}
       </div>
-      <h2>{message}</h2>
     </>
   )
 }

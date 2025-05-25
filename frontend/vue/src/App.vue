@@ -1,33 +1,30 @@
 <script setup lang="ts">
-import { createClient, LoginRequiredError } from '@featherscloud/auth'
 import { ref } from 'vue'
-import { authFetch } from './auth'
+import { automerge } from './automerge.js'
 
-const message = ref<string>('')
+const handle = await automerge.find<{ counter: number }>()
+const counter = ref<number>(0)
 
-async function loadMessage() {
-  // Get data with authentication from your server
-  const response = await authFetch('http://localhost:3030/message', {
-    method: 'GET'
+handle.on('change', ({ doc }) => {
+  counter.value = doc.counter
+})
+
+async function incrementCounter() {
+  handle.change((doc) => {
+    doc.counter = (doc.counter || 0) + 1
   })
-
-  if (response.status >= 400) {
-    throw new Error(`Failed to load message: ${response.statusText}`)
-  }
-
-  const data = await response.json()
-  message.value = data.message
 }
-
-loadMessage().catch((error: any) => alert(`There was an error: ${error.message}`))
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <h1>Feathers Auth VueJS demo</h1>
-      <p>Message from the server is:</p>
-      <h2><strong>{{ message }}</strong></h2>
+      <h1>feathers.dev Vue demo</h1>
+      <p>Our community counter is:</p>
+      <h2><strong>{{ counter }}</strong></h2>
+      <button @click="incrementCounter">
+        Increment
+      </button>
     </div>
   </header>
 </template>

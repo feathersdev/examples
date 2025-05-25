@@ -2,10 +2,10 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "npm:@featherscloud/auth@^0.6.2": "npm:@featherscloud/auth@0.6.2"
+      "npm:@feathersdev/auth@^0.6.2": "npm:@feathersdev/auth@0.6.2"
     },
     "npm": {
-      "@featherscloud/auth@0.6.2": {
+      "@feathersdev/auth@0.6.2": {
         "integrity": "sha512-A8HyFu5hK3wKqX5OUuIXj3fByDRZ+tI2gfnT2Df2A2xpOO/eSbQWWecvK+pnA7wWU08J3zx6Mv3Tuqa/0N51mQ==",
         "dependencies": {
           "@feathersjs/errors": "@feathersjs/errors@5.0.29",

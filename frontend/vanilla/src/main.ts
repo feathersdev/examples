@@ -1,29 +1,23 @@
 import { authFetch } from './auth.js'
+import { getHandle } from './automerge.js'
 import './style.css'
 
-async function loadMessage() {
-  // Get data with authentication from your server
-  const response = await authFetch('http://localhost:3030/message', {
-    method: 'GET',
-  })
-
-  if (response.status >= 400) {
-    throw new Error(`Failed to load message: ${response.statusText}`)
-  }
-
-  const data = await response.json()
-
-  document.getElementById('message')!.innerHTML = data.message
-}
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+getHandle().then((handle) => {
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <div class="wrapper">
       <h1>Feathers Auth + TypeScript demo</h1>
-      <p>Message from the server is:</p>
-      <h2 id="message"></h2>
+      <p>Our community counter is</p>
+      <h2 id="counter">...</h2>
     </div>
   </div>
 `
 
-loadMessage().catch((error: any) => alert(`There was an error: ${error.message}`))
+  handle.on('change', ({ doc }) => {
+    document.getElementById('message')!.innerHTML = doc.counter.toString()
+  })
+
+  handle.change((doc) => {
+    doc.counter = (doc.counter || 0) + 1
+  })
+})

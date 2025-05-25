@@ -1,8 +1,16 @@
-import { createClient, LoginRequiredError } from '@featherscloud/auth'
+import { createClient } from '@feathersdev/auth'
+import { createAutomerge } from '@feathersdev/automerge'
 
 export const appId = '<your-app-id>'
 
-export const auth = createClient({ appId })
+export const auth = createClient({
+  appId,
+  onLoginRequired: async (error) => {
+    window.location.href = await auth.getLoginUrl(error)
+  },
+})
+
+export const automerge = createAutomerge(auth)
 
 /**
  * Make an authenticated request using the fetch API or
@@ -15,20 +23,8 @@ export const auth = createClient({ appId })
 export async function authFetch(url: string, options?: RequestInit) {
   const headers = new Headers(options?.headers)
 
-  try {
-    // Set the authorization header with the Feathers Auth token
-    headers.set('Authorization', await auth.getHeader())
-  }
-  catch (error) {
-    if (error instanceof LoginRequiredError) {
-      // Redirect to login page if a login is required
-      window.location.href = await auth.getLoginUrl(error)
-    }
-    else {
-      // Throw any other error
-      throw error
-    }
-  }
+  // Set the authorization header with the Feathers Auth token
+  headers.set('Authorization', await auth.getHeader())
 
   return fetch(url, {
     ...options,
