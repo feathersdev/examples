@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@feathersdev/auth": "^0.11.0",
-    "@feathersdev/automerge": "^0.11.0",
+    "@feathersdev/auth": "^0.11.2",
+    "@feathersdev/automerge": "^0.11.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

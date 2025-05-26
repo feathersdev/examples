@@ -16,10 +16,14 @@ export default function Counter({ handle }: { handle: AppDocumentHandle }) {
     })
   }
 
-  return <div>
-    Our community counter is: <strong>{counter}</strong>
-    <div>
-      <button onClick={incrementCounter}>Increment</button>
+  return <div className="card bg-base-300 mx-auto rounded-4xl">
+    <div className="card-body">
+      <h2 className="text-2xl">Community Counter</h2>
+      <p className="text-sm">Number of times clicked by everybody</p>
+      <strong className="text-3xl pt-2 pb-3">{counter}</strong>
+      <button className="btn btn-primary" onClick={incrementCounter}>
+        Increment
+      </button>
     </div>
   </div>
 }
