@@ -1,4 +1,4 @@
-import { createAutomerge } from '@feathersdev/automerge'
+import { createAutomerge, DocHandle } from '@feathersdev/automerge'
 import { auth } from './auth.js'
 
 /**
@@ -7,10 +7,21 @@ import { auth } from './auth.js'
  */
 export const automerge = createAutomerge(auth)
 
-interface AppData {
+/**
+ * Add types for any data you want to store for your application
+ */
+export interface AppData {
   counter: number
 }
 
-export async function getHandle() {
+/**
+ * The document handle type for the application
+ */
+export type AppDocumentHandle = DocHandle<AppData>
+
+/**
+ * Load the document for the application
+ */
+export async function loadAppDocument(): Promise<AppDocumentHandle> {
   return automerge.find<AppData>()
 }

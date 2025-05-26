@@ -3,7 +3,7 @@ import { createClient } from '@feathersdev/auth'
 /**
  * This is your public application id
  */
-export const appId = '<your-app-id>'
+export const appId = 'did:key:z6MkjJRXzXWPRHtSRc4NRWXZmJTbYBaWoUKK6Ros1975w6eo'
 
 /**
  * The Feathers auth client instance. You can use it to get a token,

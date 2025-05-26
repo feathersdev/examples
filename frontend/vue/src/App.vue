@@ -1,30 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { automerge } from './automerge.js'
+import { ref, shallowRef } from 'vue'
+import { auth } from './auth.js'
+import { loadAppDocument, type AppDocumentHandle } from './automerge.js'
+import Counter from './Counter.vue'
+import type { FeathersAuthUser } from '@feathersdev/auth'
+import feathersLogo from './assets/feathers.svg'
 
-const handle = await automerge.find<{ counter: number }>()
-const counter = ref<number>(0)
+// State for the handle and user
+const handle = shallowRef<AppDocumentHandle | null>(null)
+const user = ref<FeathersAuthUser | null>(null)
 
-handle.on('change', ({ doc }) => {
-  counter.value = doc.counter
-})
-
-async function incrementCounter() {
-  handle.change((doc) => {
-    doc.counter = (doc.counter || 0) + 1
-  })
+// Initialize the application
+async function init() {
+  // Get the document handle
+  handle.value = await loadAppDocument()
+  // Get the current user
+  user.value = await auth.getUser()
 }
+
+// Run initialization
+init()
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <h1>feathers.dev Vue demo</h1>
-      <p>Our community counter is:</p>
-      <h2><strong>{{ counter }}</strong></h2>
-      <button @click="incrementCounter">
-        Increment
-      </button>
+  <main class="w-96 mx-auto flex flex-col gap-4 text-center pt-10">
+    <img :src="feathersLogo" alt="feathers.dev Logo" />
+    <div v-if="handle" class="flex flex-col gap-4">
+      <h2 class="text-2xl">Hello <strong>{{ user?.email }}</strong></h2>
+      <Counter :handle="handle" />
     </div>
-  </header>
+    <p v-else>Loading...</p>
+  </main>
 </template>

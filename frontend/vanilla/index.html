@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>feathers.dev TypeScript App</title>
+</head>
+
+<body>
+  <main class="w-96 mx-auto flex flex-col gap-4 text-center pt-10">
+    <img src="/feathers.svg" alt="feathers.dev Logo" />
+    <div id="app" class="flex flex-col gap-4"> Loading... </div>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
